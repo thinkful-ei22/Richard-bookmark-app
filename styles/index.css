@@ -1,0 +1,78 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+button, input[type="text"] {
+  padding: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+#bookmark-list-item {
+  width: 250px;
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  align-items: center;
+}
+
+.bookmark-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.bookmark-list > li {
+  margin: auto;
+}
+
+
+.bookmark-list > li > div{
+  width: 50%;
+  border: 10px solid rgb(16, 88, 38);
+  padding: 20px;
+  text-align: left;
+  margin: auto;
+  clear: both;
+}
+
+.bookmark-list > li > .desc-box {
+  border: 10px solid red;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.bookmark-list > li > div > button, .starholder{ 
+  float: right;
+  margin: 5px;
+}
+
+.bookmark-item {
+  display: block;
+  color: grey;
+  font-style: italic;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+#js-bookmark-list-form{
+  display: inline-block;
+  border: 10px solid black;
+  width: 60%;
+}
+
+textarea {
+  resize: none;
+}

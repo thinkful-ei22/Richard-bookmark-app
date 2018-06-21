@@ -1,6 +1,6 @@
 'use strict';
 
-/* global $ */
+/* global $ api store bookmarkList */
 
 
 
@@ -39,26 +39,42 @@ STORE
   }
 1. Add bookmark to store.bookmarks
 2. Delete bookmark from store.bookmarks
-3. Toggle Star filter from store.bookmarks
+3. min filter function from store.bookmarks or just do it from render in bookmark list
+4. run a default state if nothing is in store.bookmarks
 */
 
 /*
 API
   Create base API functionality with in mind CRUD
-1. Error implementation
+1. Error implementation // Where is best to put error function ie: 
+    (message) => window.alert(message);
 */
 
 /*
 BOOKMARK LIST
-1. Generate the bookmark html using a single object bookmark from bookmarks
+1. Generate the bookmark html using a single object bookmark from store.bookmarks
   a. generated based off of store.bookmarks.condensed
 2. Render bookmarks from the store sending through previous function for html
   
 */
 
 $(document).ready(function () {
-// bind event listeners
-
-  
- 
+  // bind event listeners
+  api.getBookmark(bookmarks => {
+    bookmarks.forEach(bookmark => {
+      store.addBookmark(bookmark);
+    });
+    bookmarkList.render();
+  });
+  // api.postBookmark('helloword','http://helloword.com','testing',2, (newBookmark)=> {
+  //   api.getBookmark((bookmarks) => {
+  //     console.log(bookmarks);
+  //   });
+  // });
+  // api.deleteBookmark('cjio01z2a00790k2v7zg15n7l',(newBookmark)=>{
+  //   api.getBookmark((bookmarks)=> {
+  //     console.log(bookmarks);
+  //   });
+  // });
 });
+

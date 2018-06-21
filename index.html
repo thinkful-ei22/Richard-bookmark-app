@@ -1,18 +1,38 @@
-!<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Bookmark App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="styles/index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="styles/index.css">
 </head>
+
 <body>
-  
+  <div class="container">
+    <h1>Bookmark App</h1>
+    <form id="js-bookmark-list-form">
+    </form>
+    <div class="initial-load-bookmark-form">
+      <button type="submit">Add Bookmark</button>
+      <select id="dropbox" onchange="handleDropBox()">
+        <option value="0">Minimum Rating
+          <option value=5>&#9733&#9733&#9733&#9733&#9733
+            <option value=4>&#9733&#9733&#9733&#9733
+              <option value=3>&#9733&#9733&#9733
+                <option value=2>&#9733&#9733
+                  <option value=1>&#9733
+      </select>
+    </div>
+    <ul class="bookmark-list js-bookmark-list">
+    </ul>
+  </div>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="scripts/handleDropbox.js"></script>
   <script type="text/javascript" src="scripts/api.js"></script>
   <script type="text/javascript" src="scripts/bookmark-list.js"></script>
   <script type="text/javascript" src="scripts/store.js"></script>
   <script type="text/javascript" src="scripts/index.js"></script>
 </body>
+
 </html>
