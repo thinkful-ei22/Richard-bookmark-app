@@ -4,6 +4,7 @@
 
 
 
+
 // I can add bookmarks to my bookmark list. Bookmarks contain:
 //      title
 //      url link
@@ -60,6 +61,7 @@ BOOKMARK LIST
 
 $(document).ready(function () {
   // bind event listeners
+  bookmarkList.bindEventListeners();
   api.getBookmark(bookmarks => {
     bookmarks.forEach(bookmark => {
       store.addBookmark(bookmark);

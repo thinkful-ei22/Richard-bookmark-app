@@ -18,6 +18,10 @@ const store = function(){
     return bookmarks.find(bookmark => bookmark.id === id);
   };
 
+  const findAndDelete = function (id) {
+    this.bookmarks = this.bookmarks.filter(object => object.id !== id);
+  };
+
   const setExpand = function(bookmark){
     const initExpand = {expand:false};
     Object.assign(bookmark, initExpand);
@@ -36,17 +40,16 @@ const store = function(){
     }
     return starString;
   };
-  const minRatingFilter = function() {
-    
-  };
 
   return {
     bookmarks,
     addBookmark,
     addingState,
     changeAddingState,
-    minRatingFilter,
+    findById,
     ratingToStarString,
     switchExpand,
+    findAndDelete,
+    ratingFilterNum,
   };
 }();

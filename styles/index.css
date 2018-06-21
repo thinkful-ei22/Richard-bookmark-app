@@ -41,7 +41,7 @@ button:hover {
 
 .bookmark-list > li > div{
   width: 50%;
-  border: 10px solid rgb(16, 88, 38);
+  border: 10px solid rgb(136, 136, 136);
   padding: 20px;
   text-align: left;
   margin: auto;
@@ -49,7 +49,7 @@ button:hover {
 }
 
 .bookmark-list > li > .desc-box {
-  border: 10px solid red;
+  border: 10px solid rgb(15, 14, 14);
   max-height: 400px;
   overflow: hidden;
 }
