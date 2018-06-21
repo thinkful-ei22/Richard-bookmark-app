@@ -15,7 +15,7 @@ const store = function(){
   };
 
   const findById = function (id) {
-    return bookmarks.find(bookmark => bookmark.id === id);
+    return this.bookmarks.find(bookmark => bookmark.id === id);
   };
 
   const findAndDelete = function (id) {
@@ -27,7 +27,7 @@ const store = function(){
     Object.assign(bookmark, initExpand);
   };
   const switchExpand = function(bookmark){
-    bookmark.expand = !bookmark.expand;
+    this.bookmark.expand = !this.bookmark.expand;
   };
   const addBookmark = function(bookmark){
     setExpand(bookmark); 
