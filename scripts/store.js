@@ -14,6 +14,10 @@ const store = function(){
     this.addingState = !this.addingState;
   };
 
+  const changeEditState = function(bookmark) {
+    bookmark.editState = !bookmark.editState;
+  };
+
   const findById = function (id) {
     return this.bookmarks.find(bookmark => bookmark.id === id);
   };
@@ -23,7 +27,7 @@ const store = function(){
   };
 
   const setExpand = function(bookmark){
-    const initExpand = {expand:false};
+    const initExpand = {expand:false, editState: false};
     Object.assign(bookmark, initExpand);
   };
   const switchExpand = function(bookmark){
@@ -56,5 +60,6 @@ const store = function(){
     findAndDelete,
     ratingFilterNum,
     setError,
+    changeEditState,
   };
 }();
