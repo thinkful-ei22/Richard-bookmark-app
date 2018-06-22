@@ -55,6 +55,7 @@ button:hover {
 
 .bookmark-list > li > .desc-box {
   overflow: hidden;
+  background-color: whitesmoke;
 }
 
 .bookmark-list > li > div > button, .starholder{ 

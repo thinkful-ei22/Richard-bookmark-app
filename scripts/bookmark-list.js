@@ -13,6 +13,7 @@ $.fn.extend({
 const bookmarkList = (function () {
 
   const generateBookmarkElement = function (bookmark) {
+    console.log(bookmark.rating);
     return `${(bookmark.editState) ? ` 
     <li class="js-bookmark-element" data-bookmark-id="${bookmark.id}">
       <form id="js-edit-form">
@@ -24,11 +25,11 @@ const bookmarkList = (function () {
         <textarea id="edit-desc" name="desc" rows="3" cols="33" maxlength="200" wrap="hard" class="js-desc-entry">${bookmark.desc}</textarea><br>
         <fieldset>
           <legend>Rating</legend>
-          <label for="one-rating"><input type="radio" name="rating" id="one-rating" value="1">&#9733</label>
-          <label for="two-rating"><input type="radio" name="rating" id="two-rating" value="2">&#9733&#9733</label>
-          <label for="three-rating"><input type="radio" name="rating" id="three-rating" value="3">&#9733&#9733&#9733</label>
-          <label for="four-rating"><input type="radio" name="rating" id="four-rating" value="4">&#9733&#9733&#9733&#9733</label>
-          <label for="five-rating"><input type="radio" name="rating" id="five-rating" value="5">&#9733&#9733&#9733&#9733&#9733</label><br>
+          <label for="one-rating"><input type="radio" name="rating" id="one-rating" ${bookmark.rating===1?'checked="checked"':''} value="1">&#9733</label>
+          <label for="two-rating"><input type="radio" name="rating" id="two-rating" ${bookmark.rating===2?'checked="checked"':''} value="2">&#9733&#9733</label>
+          <label for="three-rating"><input type="radio" name="rating" id="three-rating" ${bookmark.rating===3?'checked="checked"':''} value="3">&#9733&#9733&#9733</label>
+          <label for="four-rating"><input type="radio" name="rating" id="four-rating" ${bookmark.rating===4?'checked="checked"':''} value="4">&#9733&#9733&#9733&#9733</label>
+          <label for="five-rating"><input type="radio" name="rating" id="five-rating" ${bookmark.rating===5?'checked="checked"':''} value="5">&#9733&#9733&#9733&#9733&#9733</label><br>
         </fieldset><br>
         <button type="submit" class="bookmark-edit-submit js-bookmark-edit-submit">Submit Edits</button>
         <button type="button" class="bookmark-edit-cancel js-bookmark-edit">Cancel Edits</button>
@@ -153,13 +154,16 @@ const bookmarkList = (function () {
     });
   }
   function handleEditSubmit() {
-    $('#js-edit-form').submit(function (event) {
+    $('.bookmark-list').on('submit','#js-edit-form',function (event) {
       event.preventDefault();
-      console.log('working');
-      // const id = getItemIdFromElement(this);
-      // console.log(id);
-      // const foundBookmark = store.findById(id);
-      // const newData = JSON.parse($(`#js-edit-${id}`).serializeJson(event));
+      const id = getItemIdFromElement(this);
+      const foundBookmark = store.findById(id);
+      const updateData = JSON.parse($('#js-edit-form').serializeJson(event));
+      api.patchBookmark(id, updateData, () => {
+        store.changeEditState(foundBookmark);
+        store.editBookmark(id, updateData);
+        render();
+      });
     });
   }
 
