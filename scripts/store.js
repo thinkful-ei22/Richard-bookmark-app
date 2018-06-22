@@ -1,6 +1,6 @@
 'use strict';
 
-/* global */
+/* global toastr*/
 
 const store = function(){
 // bookmark held in a array
@@ -51,7 +51,10 @@ const store = function(){
   };
 
   const setError = function(err) {
-    window.alert(err);
+    toastr.error(err, 'Title', {
+      'timeOut': '0',
+      'extendedTImeout': '0'
+    });
   };
 
   return {
