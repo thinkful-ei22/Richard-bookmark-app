@@ -13,7 +13,6 @@ $.fn.extend({
 const bookmarkList = (function () {
 
   const generateBookmarkElement = function (bookmark) {
-    console.log(bookmark.rating);
     return `${(bookmark.editState) ? ` 
     <li class="js-bookmark-element" data-bookmark-id="${bookmark.id}">
       <form id="js-edit-form">
@@ -164,7 +163,7 @@ const bookmarkList = (function () {
         store.editBookmark(id, updateData);
         render();
       });
-    });
+    }, () => store.setError('Submission Error: Necessary Fields Empty'));
   }
 
 

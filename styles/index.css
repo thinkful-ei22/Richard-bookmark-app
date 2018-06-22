@@ -2,12 +2,18 @@
   box-sizing: border-box;
 }
 
+nav {
+  border: 10px solid black;
+  margin: 10px;
+  background-color: silver;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   background-color: khaki;
 }
 
-button, input[type="text"] {
+button, input[type="text"] , select{
   padding: 10px;
   margin: 10px 0;
 }
