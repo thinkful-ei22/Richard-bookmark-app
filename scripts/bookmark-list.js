@@ -163,7 +163,7 @@ const bookmarkList = (function () {
         store.editBookmark(id, updateData);
         render();
       });
-    }/*,() => store.setError('Submission Error: Necessary Fields Empty')*/);
+    },() => store.setError('Submission Error: Necessary Fields Empty'));
   }
 
 
