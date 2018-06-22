@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <title>Bookmark App</title>
@@ -10,23 +10,27 @@
 
 <body>
   <div class="container">
-    <h1>Bookmark App</h1>
-    <form id="js-bookmark-list-form">
-      <button type="submit">Add Bookmark</button>
-    </form>
-    <div class="initial-load-bookmark-form">
-      <select id="star-dropbox">
-        <option value="0">Minimum Rating
-          <option value=5>&#9733&#9733&#9733&#9733&#9733
-            <option value=4>&#9733&#9733&#9733&#9733
-              <option value=3>&#9733&#9733&#9733
-                <option value=2>&#9733&#9733
-                  <option value=1>&#9733
-                    <option value=0>No Filter
-      </select>
-    </div>
-    <ul class="bookmark-list js-bookmark-list">
-    </ul>
+    <nav role="navigation">
+      <h1>Bookmark App</h1>
+      <form id="js-bookmark-list-form">
+        <button type="submit">Add Bookmark</button>
+      </form>
+      <div class="initial-load-bookmark-form">
+        <select id="star-dropbox">
+          <option value="0">Minimum Rating
+            <option value=5>&#9733&#9733&#9733&#9733&#9733 5 stars
+              <option value=4>&#9733&#9733&#9733&#9733 4 stars
+                <option value=3>&#9733&#9733&#9733 3 stars
+                  <option value=2>&#9733&#9733 2 stars
+                    <option value=1>&#9733 1 star
+                      <option value=0>No Filter
+        </select>
+      </div>
+    </nav>
+    <main role="main">
+      <ul class="bookmark-list js-bookmark-list">
+      </ul>
+    </main>
   </div>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" src="scripts/api.js"></script>

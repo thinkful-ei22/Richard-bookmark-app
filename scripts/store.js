@@ -41,6 +41,10 @@ const store = function(){
     return starString;
   };
 
+  const setError = function(err) {
+    window.alert(err);
+  };
+
   return {
     bookmarks,
     addBookmark,
@@ -51,5 +55,6 @@ const store = function(){
     switchExpand,
     findAndDelete,
     ratingFilterNum,
+    setError,
   };
 }();

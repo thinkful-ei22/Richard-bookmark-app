@@ -60,7 +60,6 @@ BOOKMARK LIST
 */
 
 $(document).ready(function () {
-  // bind event listeners
   bookmarkList.bindEventListeners();
   api.getBookmark(bookmarks => {
     bookmarks.forEach(bookmark => {
@@ -68,15 +67,5 @@ $(document).ready(function () {
     });
     bookmarkList.render();
   });
-  // api.postBookmark('helloword','http://helloword.com','testing',2, (newBookmark)=> {
-  //   api.getBookmark((bookmarks) => {
-  //     console.log(bookmarks);
-  //   });
-  // });
-  // api.deleteBookmark('cjio01z2a00790k2v7zg15n7l',(newBookmark)=>{
-  //   api.getBookmark((bookmarks)=> {
-  //     console.log(bookmarks);
-  //   });
-  // });
 });
 

@@ -16,11 +16,11 @@ const bookmarkList = (function () {
     return `
     <li class="js-bookmark-element" data-bookmark-id="${bookmark.id}">
       <div class="title-bar expandable">
-        <p>${bookmark.title}</p>
-        <div class="starholder">${store.ratingToStarString(bookmark)}</div>
+        <div class="starholder">Rating:${store.ratingToStarString(bookmark)}</div>
+        <p>Title:${bookmark.title}</p>
       </div>
       <div class="desc-box ${bookmark.expand ? '' : 'hidden'}">
-        <p>${bookmark.desc}</p>
+        <p>Description: ${bookmark.desc}</p>
         <button type="button" class="url-visit js-url-visit">Visit Site</button>
         <button type="button" class="bookmark-delete js-bookmark-delete">Delete</button>
       </div>
@@ -35,18 +35,21 @@ const bookmarkList = (function () {
     let formHTML = `
       ${store.addingState ? `
         <label for="title">Title</label>
-        <input type="text" name="title" class="js-title-entry" placeholder="e.g., Yahoo">
+        <input type="text" name="title" class="js-title-entry" placeholder="e.g., Yahoo" id="title">
         <label for="url">URL</label>
-        <input type="text" name="url" class="js-url-entry" placeholder="e.g., http://yahoo.com"><br>
-        <label for="desc">Description</label>
+        <input type="text" id="url" name="url" class="js-url-entry" placeholder="e.g., http://yahoo.com"><br>
+        <label for="desc">Description</label><br>
         <textarea id="desc" name="desc" rows="3" cols="33" maxlength="200" wrap="hard" class="js-desc-entry" /><br>
-        <input type="radio" name="rating" value="1">&#9733
-        <input type="radio" name="rating" value="2">&#9733&#9733
-        <input type="radio" name="rating" value="3">&#9733&#9733&#9733
-        <input type="radio" name="rating" value="4">&#9733&#9733&#9733&#9733
-        <input type="radio" name="rating" value="5">&#9733&#9733&#9733&#9733&#9733<br>` : ''}
+        <fieldset>
+        <legend>Rating</legend>
+        <label for="one-rating"><input type="radio" name="rating" id="one-rating" value="1">&#9733 1 star</label>
+        <label for="two-rating"><input type="radio" name="rating" id="two-rating" value="2">&#9733&#9733 2 stars</label>
+        <label for="three-rating"><input type="radio" name="rating" id="three-rating" value="3">&#9733&#9733&#9733 3 stars</label>
+        <label for="four-rating"><input type="radio" name="rating" id="four-rating" value="4">&#9733&#9733&#9733&#9733 4 stars</label>
+        <label for="five-rating"><input type="radio" name="rating" id="five-rating" value="5">&#9733&#9733&#9733&#9733&#9733 5 stars</label><br>
+        </fieldset>` : ''}
         <button type="submit">Add Bookmark</button>`;
-    
+
     $('#js-bookmark-list-form').html(formHTML);
   };
   const render = function () {
@@ -75,7 +78,7 @@ const bookmarkList = (function () {
           store.addBookmark(newBookmark);
           store.changeAddingState();
           render();
-        });
+        }, () => store.setError('Submission Error: Necessary Fields Empty'));
       } else {
         store.changeAddingState();
         render();
@@ -89,8 +92,6 @@ const bookmarkList = (function () {
   }
   function handleBookmarkExpand() {
     $('.bookmark-list').on('click', '.expandable', function () {
-      console.log(this);
-      console.log($(this).closest('.js-bookmark-element').find('.desc-box'));
       const id = getItemIdFromElement(this);
       const foundBookmark = store.findById(id);
       foundBookmark.expand = !foundBookmark.expand;
@@ -103,7 +104,8 @@ const bookmarkList = (function () {
       api.deleteBookmark(id, () => {
         store.findAndDelete(id);
         render();
-      });
+      },
+      () => store.setError('Delete Bookmark Problem'));
     });
   }
   function handleVisitUrl() {

@@ -4,10 +4,12 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+  background-color: khaki;
 }
 
 button, input[type="text"] {
-  padding: 5px;
+  padding: 10px;
+  margin: 10px 0;
 }
 
 button:hover {
@@ -37,24 +39,24 @@ button:hover {
 .bookmark-list > li {
   margin: auto;
   margin-bottom: 20px;
-  border: 10px solid grey;
+  border: 1px solid black;
+  background-color: darkkhaki;
   width: 500px;
 }
 
 
 .bookmark-list > li > div{
-  padding: 20px;
+  padding: 0px 15px;
   text-align: left;
   margin: auto;
   clear: both;
 }
 
 .bookmark-list > li > .title-bar {
-  height: 120px;
+  height: 50px;
 }
 
 .bookmark-list > li > .desc-box {
-  max-height: 400px;
   overflow: hidden;
 }
 
@@ -73,10 +75,13 @@ button:hover {
 
 #js-bookmark-list-form{
   display: inline-block;
-  border: 10px solid black;
   width: 60%;
 }
 
 textarea {
   resize: none;
+}
+
+.js-title-entry , .js-url-entry{
+  margin-bottom: 10px;
 }
