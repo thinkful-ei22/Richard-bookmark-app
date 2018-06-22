@@ -2,12 +2,18 @@
   box-sizing: border-box;
 }
 
+nav {
+  border: 10px solid black;
+  margin: 10px;
+  background-color: silver;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   background-color: khaki;
 }
 
-button, input[type="text"] {
+button, input[type="text"] , select{
   padding: 10px;
   margin: 10px 0;
 }
@@ -52,12 +58,10 @@ button:hover {
   clear: both;
 }
 
-.bookmark-list > li > .title-bar {
-  height: 50px;
-}
 
 .bookmark-list > li > .desc-box {
   overflow: hidden;
+  background-color: whitesmoke;
 }
 
 .bookmark-list > li > div > button, .starholder{ 

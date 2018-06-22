@@ -13,8 +13,28 @@ $.fn.extend({
 const bookmarkList = (function () {
 
   const generateBookmarkElement = function (bookmark) {
-    return `
+    return `${(bookmark.editState) ? ` 
     <li class="js-bookmark-element" data-bookmark-id="${bookmark.id}">
+      <form id="js-edit-form">
+        <label for "edit-title">Edit Title</label><br>
+        <input type="text" name="title" class="js-title-entry" id="edit-title" value="${bookmark.title}"><br>
+        <label for "edit-url">Edit URL</label><br>
+        <input type="text" name="url" class="js-url-entry" id="edit-url" value="${bookmark.url}"><br>
+        <label for="edit-desc">Description</label><br>
+        <textarea id="edit-desc" name="desc" rows="3" cols="33" maxlength="200" wrap="hard" class="js-desc-entry">${bookmark.desc}</textarea><br>
+        <fieldset>
+          <legend>Rating</legend>
+          <label for="one-rating"><input type="radio" name="rating" id="one-rating" ${bookmark.rating===1?'checked="checked"':''} value="1">&#9733</label>
+          <label for="two-rating"><input type="radio" name="rating" id="two-rating" ${bookmark.rating===2?'checked="checked"':''} value="2">&#9733&#9733</label>
+          <label for="three-rating"><input type="radio" name="rating" id="three-rating" ${bookmark.rating===3?'checked="checked"':''} value="3">&#9733&#9733&#9733</label>
+          <label for="four-rating"><input type="radio" name="rating" id="four-rating" ${bookmark.rating===4?'checked="checked"':''} value="4">&#9733&#9733&#9733&#9733</label>
+          <label for="five-rating"><input type="radio" name="rating" id="five-rating" ${bookmark.rating===5?'checked="checked"':''} value="5">&#9733&#9733&#9733&#9733&#9733</label><br>
+        </fieldset><br>
+        <button type="submit" class="bookmark-edit-submit js-bookmark-edit-submit">Submit Edits</button>
+        <button type="button" class="bookmark-edit-cancel js-bookmark-edit">Cancel Edits</button>
+      </form>
+    ` :
+      `<li class="js-bookmark-element" data-bookmark-id="${bookmark.id}">
       <div class="title-bar expandable">
         <div class="starholder">Rating:${store.ratingToStarString(bookmark)}</div>
         <p>Title:${bookmark.title}</p>
@@ -22,8 +42,9 @@ const bookmarkList = (function () {
       <div class="desc-box ${bookmark.expand ? '' : 'hidden'}">
         <p>Description: ${bookmark.desc}</p>
         <button type="button" class="url-visit js-url-visit">Visit Site</button>
+        <button type="button" class="bookmark-edit js-bookmark-edit">Edit Bookmark</button>
         <button type="button" class="bookmark-delete js-bookmark-delete">Delete</button>
-      </div>
+      </div>`}
     </li>`;
   };
   const generateBookmarkListString = function (bookmarks) {
@@ -123,12 +144,37 @@ const bookmarkList = (function () {
     });
   }
 
+  function handleEditButton() {
+    $('.bookmark-list').on('click', '.js-bookmark-edit', function () {
+      const id = getItemIdFromElement(this);
+      const foundBookmark = store.findById(id);
+      store.changeEditState(foundBookmark);
+      render();
+    });
+  }
+  function handleEditSubmit() {
+    $('.bookmark-list').on('submit','#js-edit-form',function (event) {
+      event.preventDefault();
+      const id = getItemIdFromElement(this);
+      const foundBookmark = store.findById(id);
+      const updateData = JSON.parse($('#js-edit-form').serializeJson(event));
+      api.patchBookmark(id, updateData, () => {
+        store.changeEditState(foundBookmark);
+        store.editBookmark(id, updateData);
+        render();
+      });
+    }, () => store.setError('Submission Error: Necessary Fields Empty'));
+  }
+
+
   function bindEventListeners() {
     handleNewBookmarkSubmit();
     handleBookmarkExpand();
     handleBookmarkDelete();
     handleVisitUrl();
     handleStarFilter();
+    handleEditButton();
+    handleEditSubmit();
   }
 
   return {
