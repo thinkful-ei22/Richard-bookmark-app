@@ -1,0 +1,1 @@
+psql -U dev -d dev-bookmark-app -f ./db/bookmark-app.sql
