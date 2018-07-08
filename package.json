@@ -1,0 +1,17 @@
+{
+  "name": "bookmark-app-v1",
+  "version": "0.0.1",
+  "description": "FullStack App w/ RESTful API Challenge",
+  "license": "MIT",
+  "author": "Richard Tom",
+  "repository": {
+    "type": "git"
+  },
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
