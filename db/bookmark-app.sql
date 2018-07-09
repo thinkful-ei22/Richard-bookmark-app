@@ -5,13 +5,13 @@ CREATE TABLE bookmarks (
   id serial PRIMARY KEY,
   title text NOT NULL,
   webUrl text NOT NULL,
-  descipt text DEFAULT NULL,
+  descript text DEFAULT NULL,
   rating INTEGER DEFAULT NULL
 );
 
 ALTER SEQUENCE bookmarks_id_seq RESTART WITH 1000;
 
-INSERT INTO bookmarks (title, webUrl, descipt, rating) VALUES
+INSERT INTO bookmarks (title, webUrl, descript, rating) VALUES
 (
   'Google', 
   'http://google.com', 
