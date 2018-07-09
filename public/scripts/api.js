@@ -2,7 +2,8 @@
 /* global $ */
 
 const api = function () {
-  const BASE_URL = 'https://thinkful-list-api.herokuapp.com/richard';
+  const BASE_URL = 'http://localhost:8080/api';
+  // 'https://thinkful-list-api.herokuapp.com/richard'
   // get needs no parameters
   const getBookmark = function (callback) {
     $.getJSON(`${BASE_URL}/bookmarks`,callback);
@@ -14,7 +15,7 @@ const api = function () {
   // rating	number, optional Between 1 and 5
   const patchBookmark = function (id, updateData, callback, error) {
     $.ajax({
-      url:`${BASE_URL}/bookmarks/${id}`,
+      url:`${BASE_URL}/bookmarks/${id}`, 
       method: 'PATCH',
       dataType: 'json',
       contentType: 'application/json',

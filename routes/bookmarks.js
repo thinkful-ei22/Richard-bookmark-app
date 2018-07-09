@@ -37,8 +37,23 @@ router.post('/',(req, res, next) => {
     .returning(['id', 'title', 'weburl', 'descript', 'rating'])
     .then((results) => {
       const result = results[0];
-      console.log(result);
       res.location(`${req.originalUrl}/${result.id}`).status(201).json(result);
+    })
+    .catch(err => next(err));
+});
+
+router.delete('/:id', (req, res, next) => {
+  const id = req.params.id;
+  knex
+    .from('bookmarks')
+    .where('bookmarks.id', id)
+    .del()
+    .then(results => {
+      if (results) {
+        res.sendStatus(204);
+      } else {
+        next();
+      }
     })
     .catch(err => next(err));
 });
