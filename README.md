@@ -1,9 +1,4 @@
 # Fundamentals Final Project
-
-## Live Page
-
-https://thinkful-ei22.github.io/Richard-bookmark-app/
-
 ## Build a Bookmarks App
 
 ### Project Overview
